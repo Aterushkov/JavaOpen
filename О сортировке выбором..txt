@@ -1,0 +1,44 @@
+package com.company;
+
+
+public class Main {
+    public static void main(String[] args) {
+        int[] array = new int[]{4, 11, 28, 74, 43, 1, 18, 9, 5, 6, 32, 65, 4, 24};
+
+        for (int step = 0; step < array.length; step++) {
+            int index = min(array, step);
+
+            int tmp = array[step];
+            array[step] = array[index];
+            array[index] = tmp;
+
+        }
+        System.out.println(arrayToString(array));
+    }
+
+    private static int min(int[] array, int start) {
+        int minValue = array[start];
+        int minIndex = start;
+        for (int i = start; i < array.length; i++) {
+            if (array[i] < minValue) {
+                minValue = array[i];
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+
+    private static String arrayToString(int[] array) {
+        StringBuilder sb = new StringBuilder();
+        sb.append( "[");
+        for (int i = 0; i < array.length; i++) {
+            if (i > 0) {
+                sb.append(", ");
+            }
+            sb.append(array[i]);
+        }
+        sb.append("]");
+
+    }
+
+}
