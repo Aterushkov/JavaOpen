@@ -1,0 +1,21 @@
+public static int[] findDawnElement(int[] inputArry, int numberOfElements) {
+        int [] topElements = new int[numberOfElements];
+
+        int previousMin = Integer.MIN_VALUE;
+        for (int i = 0; i <numberOfElements; i++){
+            int currentMin = findMinUnderBoundary(inputArry, previousMin);
+            previousMin = currentMin;
+            topElements[i] = currentMin;
+        }
+        return topElements;
+    }
+
+    private static int findMinUnderBoundary(int[] inputArry, int topBoundary) {
+        int currentMin = Integer.MAX_VALUE;
+        for (int i = 0; i < inputArry.length; i++) {
+            if (inputArry[i] < topBoundary) {
+                currentMin = Math.min(currentMin, inputArry[i]);
+            }
+        }
+        return currentMin;
+    }
