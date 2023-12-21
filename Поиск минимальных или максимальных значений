@@ -1,0 +1,36 @@
+public enum Choise {
+    MAX, MIN
+}
+
+ public ArrayList<Employee> findLowOrTopElement(ArrayList<Employee> inputArry, int numberOfElements, Choise maxOrMin) {
+        int previous = MAX == maxOrMin ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        int[] topElements = new int[numberOfElements];
+        ArrayList<Employee> lowEmployee = new ArrayList<>();
+
+        for (int i = 0; i < numberOfElements; i++) {
+            int current = findLowOrTopUnderBoundary(inputArry, previous, maxOrMin);
+            previous = current;
+            topElements[i] = current;
+            lowEmployee.add(inputArry.get(i));
+        }
+        return lowEmployee;
+    }
+
+    private int findLowOrTopUnderBoundary(ArrayList<Employee> inputArry, int topBoundary, Choise maxOrMin) {
+        int current = MAX == maxOrMin ?  Integer.MIN_VALUE: Integer.MAX_VALUE;
+
+        if(MAX == maxOrMin){
+            for (int i = 0; i < inputArry.size(); i++) {
+                if (inputArry.get(i).getMonthSalary() < topBoundary) {
+                    current = Math.max(current, inputArry.get(i).getMonthSalary());
+                }
+            }
+        } else {
+            for (int i = 0; i < inputArry.size(); i++) {
+                if (inputArry.get(i).getMonthSalary() > topBoundary) {
+                    current = Math.min(current, inputArry.get(i).getMonthSalary());
+                }
+            }
+        }
+        return current;
+    }
