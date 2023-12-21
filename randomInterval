@@ -1,0 +1,9 @@
+public int randomInterval(int min, int max) {
+        if (max < min || min < 0) {
+            return 0;
+        }
+        int diff = max - min;
+        Random random = new Random();
+        int i = random.nextInt(diff + 1);
+        return i += min;
+    }
