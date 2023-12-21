@@ -1,0 +1,21 @@
+public static int[] findTopElement(int[] inputArry, int numberOfElements) {
+        int [] topElements = new int[numberOfElements];
+
+        int previousmax = Integer.MAX_VALUE;
+        for (int i = 0; i <numberOfElements; i++){
+            int currentMax = findMaxUnderBoundary(inputArry, previousmax);
+            previousmax = currentMax;
+            topElements[i] = currentMax;
+        }
+        return topElements;
+    }
+
+    private static int findMaxUnderBoundary(int[] inputArry, int topBoundary) {
+        int currentMax = Integer.MIN_VALUE;
+        for (int i = 0; i < inputArry.length; i++) {
+            if (inputArry[i] < topBoundary) {
+                currentMax = Math.max(currentMax, inputArry[i]);
+            }
+        }
+        return currentMax;
+    }
