@@ -1,0 +1,20 @@
+public static ArrayList<Integer> findUniqueElement(int[] inputArry) {
+        if (inputArry.length == 0 ) {
+            return new ArrayList<Integer>();
+        }
+        ArrayList<Integer> uniqueNumbers = new ArrayList<Integer>();
+
+        for (Integer currentNumbers:inputArry){
+            boolean alreadyExists = false;
+            for (Integer existsNumber: uniqueNumbers) {
+                if(existsNumber == currentNumbers){
+                    alreadyExists = true;
+                    break;
+                }
+            }
+            if (!alreadyExists){
+                uniqueNumbers.add(currentNumbers);
+            }
+        }
+        return uniqueNumbers;
+    }
