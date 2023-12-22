@@ -2,8 +2,14 @@ public enum Choise {
     MAX, MIN
 }
 
-public static int[] findLowOrTopElement(int[] inputArry, int numberOfElements, Choise maxOrMin) {
+ public static int[] findLowOrTopElement(int[] inputArry, int numberOfElements, Choise maxOrMin) {
         int previous = Choise.MAX == maxOrMin ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        if (inputArry.length == 0 ) {
+            return new int[0];
+        }
+        if (inputArry.length < numberOfElements) {
+            numberOfElements = inputArry.length;
+        }
         int[] topElements = new int[numberOfElements];
 
 
@@ -19,13 +25,13 @@ public static int[] findLowOrTopElement(int[] inputArry, int numberOfElements, C
         int current = Choise.MAX == maxOrMin ?  Integer.MIN_VALUE: Integer.MAX_VALUE;
 
         if( Choise.MAX == maxOrMin){
-            for (int i = 0; i < inputArry.length-1; i++) {
+            for (int i = 0; i < inputArry.length; i++) {
                 if (inputArry[i] < topBoundary) {
                     current = Math.max(current, inputArry[i]);
                 }
             }
         } else {
-            for (int i = 0; i < inputArry.length-1; i++) {
+            for (int i = 0; i < inputArry.length; i++) {
                 if (inputArry[i] > topBoundary) {
                     current = Math.min(current, inputArry[i]);
                 }
