@@ -1,0 +1,19 @@
+ public static ArrayList<String> findUniqueElement(String[] inputArry) {
+        ArrayList<String> inputArryList = new ArrayList<>(List.of(inputArry));
+        Collections.sort(inputArryList);
+        if (inputArry.length == 0) {
+            return new ArrayList<String>();
+        }
+        ArrayList<String> uniqueNumbers = new ArrayList<String>();
+        String prevNum = inputArry[0];
+
+        for (int i = 0; i < inputArryList.size(); i++) {
+            if (!prevNum.equals(inputArryList.get(i))) {
+                uniqueNumbers.add(prevNum);
+                prevNum = inputArryList.get(i);
+            }
+        }
+        uniqueNumbers.add(prevNum);
+
+        return uniqueNumbers;
+    }
