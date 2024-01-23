@@ -1,0 +1,41 @@
+public class FileOperator {
+
+    public String scanFileDir(String name) {
+        ArrayList<String> filesList = new ArrayList<>();
+        File folder = new File("/paht");
+        String isFreeName = "";
+        if (folder.exists()) {
+            File[] files = folder.listFiles();
+            if (files == null) {
+                return name;
+            }
+            for (int i = 0; i < files.length; i++) {
+                String tempStr = files[i].getName();
+                int dotIndex = tempStr.lastIndexOf(".");
+                filesList.add(tempStr.substring(0, dotIndex));
+            }
+            isFreeName = scanFileDir(filesList, name, 0);
+        }
+        return isFreeName;
+    }
+
+    private String scanFileDir(ArrayList<String> filesList, String name, int count) {
+        int tempCount = count;
+        String tempName = name;
+        if (tempCount == 1) {
+            tempName = name.substring(0, name.length());
+            tempName = tempName + tempCount;
+        }
+        if (tempCount > 1) {
+            tempName = name.substring(0, name.length() - 1);
+            tempName = tempName + tempCount;
+        }
+        String finalTempName = tempName;
+        List<String> isFree = filesList.stream().filter(n -> n.equals(finalTempName)).toList();
+        if (!isFree.isEmpty()) {
+            tempCount++;
+            tempName = scanFileDir(filesList, tempName, tempCount);
+        }
+        return tempName;
+    }
+}
